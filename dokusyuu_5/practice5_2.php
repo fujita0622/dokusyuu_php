@@ -7,6 +7,7 @@
 //[1.回答]
 // mb_substr関数で第一引数(対象文字列) 'サーバーサイド技術' の 第二引数(開始位置) 5文字目(引数は4だが開始位置の先頭が0なので5文字目) から　第三引数(文字数)3文字抜き出し $str に代入
 $str = mb_substr('サーバーサイド技術', 4, 3);
+echo $str . "<br>";
 
 //[2.回答]
 // mb_convert_kana関数で第一引数(対象文字列) 'ｻｰﾊﾞｰｻｲﾄﾞ' を　第二引数(変換オプション) 'KV'(Kは半角カナ=>全角カナ, Vは濁点つきの文字を一文字に変換)で半角カナから全角カナに変換
@@ -14,8 +15,8 @@ echo mb_convert_kana('ｻｰﾊﾞｰｻｲﾄﾞ', 'KV');
 
 //[3.回答]
 // 変数$dataに文字列を代入
-$data = "abc";
+$data = "おはようございます。";
 // mb_convert_encodingで変数$dataの文字コードをShift-JISからEUC-JPに変換
-mb_convert_encoding($data, 'EUC-JP', 'Shift-JIS');
+echo mb_convert_encoding($data, 'EUC-JP', 'Shift-JIS');
 ?>
 
