@@ -1,0 +1,23 @@
+1. 次のコードは、アクセスログをカンマ区切りテキストとして保存するためのスクリプトです。
+   空欄①〜⑩を埋めてコードを完成させなさい。
+   <?php 
+   $data① = date('Y/m/d H:i:s');
+   $data① = $_SERVER['SCRIPT_NAME'];
+   $data① = $_SERVER['HTTP_USER_AGENT'];
+   $file = ②('access.csv', '③') ④('ファイルを開けませんでした！');
+   ⑤($file, LOCK_EX);
+   ⑥($file, ⑦("⑧", $data) . ⑨);
+   ⑤($file, LOCK_UN);
+   ⑩($file);
+
+[回答]
+①[]
+②fopen
+③ab
+④or die
+⑤flock
+⑥fwrite
+⑦implode
+⑧,
+⑨"\t"
+⑩fclose
