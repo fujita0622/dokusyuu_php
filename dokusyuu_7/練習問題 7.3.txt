@@ -1,0 +1,18 @@
+1. 現在のフォルダ配下のファイル名をリスト表示してみましょう。
+   次のコードの空欄①〜⑤を埋めて、スクリプトを完成させてください。
+
+<?php
+  $dir = new ①('./');
+  ② ($dir as $file) {
+    if ($file->③) {
+    print ④($file->⑤, 'UTF-8', 'SJIS-WIN'). '<br/>';
+    }
+  }
+?>
+
+【1.回答】
+①Directorlterator
+②foreach
+③isFile()
+④mb_convert_encoding
+⑤getFileName()
