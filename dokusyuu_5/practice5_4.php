@@ -14,6 +14,6 @@ var_dump($data);
 
 // [2.回答]
 $str2 = "お問い合わせはCQW15204@nifty.co.jpまで<br>";
-print preg_replace('/[a-z0-9\.\-]+@([a-z0-9\-]+\.)+[a-z0-9\-]+/i', '<a href="$0">$0</a>', $str2);
+print preg_replace('/[a-z0-9\.\-]+@([a-z0-9\-]+\.)+[a-z0-9\-]+/i', '<a href ="mailto:$0">$0</a>', $str2);
 ?>
 
