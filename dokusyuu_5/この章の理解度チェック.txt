@@ -1,0 +1,25 @@
+3. 複数のURL文字列を含むテキストsample.datがあるとします。次のsample.datを順番に読み込み、テキストに含まれるURL文字列を一覧表示してみましょう。
+空欄①〜⑪を埋めてスクリプトを完成させてください。ただし、テキストの各行には2つ以上のURLは存在しないものとする。
+
+$file = ①('sample.dat', '②') or die('Cannot open file!');
+flock($file, ③);
+④($line = ⑤($file, 1024)) {
+  if(⑥(|http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?|⑦', ⑧, $data)) {
+  print ⑨ . "<br/>";
+  }
+}
+flock($file, [⑩]);
+fclose(⑪);
+
+【3.回答】
+①fopen
+②r
+③LOCK_SH
+④while
+⑤fgets
+⑥preg_match
+⑦i
+⑧$line
+⑨$data[0];
+⑩LOCK_UN
+⑪$file
