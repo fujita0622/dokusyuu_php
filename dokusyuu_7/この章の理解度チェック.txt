@@ -1,0 +1,56 @@
+7章 この章の理解度チェック
+1. 次の文章はphpで利用可能なライブラリについて説明したものです。正しいものには◯、誤っているものには×をつけてください。
+(1) phpでは、古くからクラス主体のライブラリが中心となっている
+(2) 全てのメソッド/プロパティは、クラスから直接呼び出すことはできない
+(3) インスタンスメソッドを呼び出すには::演算子を利用する
+(4) Composerでインストールされたパッケージは、そのマシン全体で有効となる
+(5) Smartyのテンプレートでは、修飾子を利用することで if/for のような制御構文を実装できる
+
+3. Smartyを使ってロジックとレイアウトを分離してみます。次のコードの空欄①〜⑥を埋めてスクリプトを完成させてください
+
+prac3.php
+<?php
+  require_once '../../①';
+  $s = new Smarty();
+  $s -> ②('book', [
+  'isbn' => '978-4-7981-4402-3',
+  'title' => '独習ASP.NET 第5版',
+  'price' => 1800,
+  'published' => '2016-01-21',
+  ]);
+  $s -> ③('prac3.tpl');
+?>
+
+prac3.tpl
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+  <title>Smarty</title>
+</head>
+<body>
+<ul>
+  <li>ISBNコード:{$book.isbn}</li>
+  <li>書名:{$book.title}</li>
+  <li>価格:{$book.price|④}円</li>
+  {⑤$book.price < 2500} [Low Price!!]{/⑤}</li>
+  <li>刊行日:{$book.published|⑥:'%Y/%m/%d'}刊行</li>
+</ul>
+</body>
+</html>
+
+
+【1.回答】
+(1) ×
+(2) ×
+(3) ×
+(4) ×
+(5) ×
+
+【3.回答】
+① autoload.php
+② assign
+③ display
+④ number_format
+⑤if
+⑥ date_format
