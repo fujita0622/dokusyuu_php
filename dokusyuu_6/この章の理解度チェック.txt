@@ -1,0 +1,52 @@
+6章 この章の理解度チェック
+2. 外部ファイルをインクリードするための命令を4種類あげてください。また、それぞれの違いについて簡潔に説明してみましょう。
+
+3. 次に示すprocessNumber関数は、与えられた数値$num1....を引数$funcで処理し、その結果を配列として返す関数です($funcは引数として数値を受け取り、処理結果を戻り値として返すものとします)。ここでは、processNumber関数を定義するとともに、これを利用して、与えられた数値を二乗してみます。次のコードの空欄を①〜⑤を埋めて、スクリプトを完成させてください。
+<?php
+  function processNumber(① $func, float ...$args): array {
+    foreach(② as $arg) {
+      $result[③];
+    }
+    return $result;
+  }
+
+  ④($x, $y) = processNumber(
+    function(float $num) : float{},
+    5,15);
+?>
+
+4. 引数の参照渡しに関する問題です。次のコードの①〜③における変数$numの値を答えてください。
+<?php
+  function refCheck(int &$num) {
+    print $num. '<br/>'; --①
+    $num++;
+    unset($num);
+    print $num. '<br/>'; --②
+  }
+
+  $num = 1;
+  refCheck($num) {
+    print $num; --③
+  }
+?>
+
+
+【2.回答】
+include 指定されたファイルを読み込む。エラー時はWarningが発行され、処理は最後まで行われる。
+require 指定されたファイルを読み込み。エラー時はFatalErrorが発行され、その時点で処理が中断する。
+include_once 指定されたファイルを一度だけ読み込む。エラー時はWarningが発行され、処理は最後まで行われる。
+require_once 指定されたファイルを一度だけ読み込み。エラー時はFatalErrorが発行され、その時点で処理が中断する。
+
+
+【3.回答】
+①callable
+②$args
+③$func($arg)
+④list
+⑤return $num * $num
+
+
+【4.回答】
+① 1
+② NULL
+③ 2
