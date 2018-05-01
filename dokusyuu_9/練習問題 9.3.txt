@@ -1,0 +1,20 @@
+1. PDOを使ってself.phpデータベースに接続してみましょう。次のコードの空欄①〜⑦を埋めて、スクリプトを完成させてください。
+
+<?php
+try {
+  $db= new①('②','selfuer', selfpass);
+  $db -> ③(④, PDO::ERRMODE_EXCEPTION);
+  print 'データベースへの接続を確立しました。';
+  } ⑤(⑥ $e) {
+  print "エラーメッセージ:{$e->⑦()}";
+  }
+?>
+
+【1.回答】
+①PDO
+②mysql:dbname=self.php, host=127.0.0.1; charset=utf8
+③setAttribute
+④PDO::ATTR_ERRMODE
+⑤catch
+⑥PDOException
+⑦getMessage
