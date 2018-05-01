@@ -1,0 +1,38 @@
+1. bookテーブルの内容を、フィッチモードPDO::FETCH_OBJを使ってリスト表示してみましょう。次のコードを空欄①〜⑩を埋めて、スクリプトを完成させてください。
+
+<?php
+  require_once '../../DbManager.php';
+  require_once '../../Encode.php';
+
+  ① {
+    $db = getDb();
+    $stt = $db -> ②('SELECT * FROM book ③ publishd DESC');
+    print '<ul>';
+    while($row = $stt->④(⑤)) {
+?>
+
+  <li><?=e(⑥) ?>
+  (<?=e(⑦) ?>)</li>
+
+<?php
+  }
+
+  print '</li>';
+
+  } ⑧(⑨ $e) {
+    print "エラーメッセージ:{$e->⑩}";
+  }
+?>
+
+
+【1.回答】
+①try
+②query
+③ORDER BY
+④fetch
+⑤PDO::FETCH_OBJ
+⑥$row -> title
+⑦$row -> publish
+⑧catch
+⑨PDOException
+⑩getMessage();
