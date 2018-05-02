@@ -1,0 +1,96 @@
+1. 次の文章は、データベースに関するキーワードを説明したものです。対応するキーワードを答えてください。
+(1) オブジェクト形式のデータをそのまま出し入れできるデータベース
+(2) データベース製品個々の違いを吸収するためのライブラリの総称
+(3) トランザクションにおいて、途中で処理が失敗した場合に行う操作
+(4) PHP5から標準で導入された軽量データベースエンジン
+(5) データベースから取り出したレコード群を保持するために、メモリ上に用意された仮想的なテーブル
+
+2. 次の文章は、データベース(処理)に関して記述したものです。正しいものには◯、謝っているものには×をつけてください。
+(1) トランザクション処理を利用することで、データベースの更新処理を高速化できる
+(2) データベース抽象化レイヤを利用することで、データベースの個々の機能を十分に引き出すことができる
+(3) DDLに属するSQL命令にはSELECT、UPDATE、INSERTなどがある。
+(4) 条件式「title LIKE '%PHP'」は後方一致検索（titleフィールドが「PHP」で終わるかどうか）を表す。
+(5) 更新処理を行うにはqueryメソッドを、検索処理を行うにはexecメソッドを使用する。
+
+3. 次のSQL文を満たすようなSQL命令を記述してみましょう。
+(1) bookテーブルの価格(price列)を1割引の価格に変更する
+(2) bookテーブルから価格が2500円以上でかつ、出版日が2015年4月より前の書籍を削除する。
+(3) bookテーブルから翔泳社の書籍を取り出す。ただし、価格が安い順で、価格が同じものは出版日が新しい順に並べる。取り出す列はtitle,price,publish,publishedとする。
+(4) usrテーブルから苗字が「山田」の人のユーザID(uid列)とユーザ名(unam)を取り出す。
+(5) bookテーブルから出版テーブルごとの書籍の平均価格を算出する。
+
+4. 次のスクリプトは指定された検索条件に従って、bookテーブルの内容を検索するためのものです。次のコードの空欄①〜⑩を埋めて、スクリプトを完成させてください。
+
+<form method = "POST" action = "①">
+<label for = "title">書名:</label>
+<input id ="title" type = "text" name = "title" size = "20" />
+<input type = "submit" value = "検索" />
+</form>
+<?php
+if (isset($_POST['title'])) {
+  require_once '../../DbManager.php';
+  require_once '../../Encode.php';
+
+  try {
+    $db = getDb();
+    $stt -> $db -> prepare('SELECT * FROM book ②');
+    $stt -> ③(④, '%' . $_POST['title'] . '%');
+    $stt -> ⑤();
+    print '<ul>';
+    ⑥($row = $stt -> fetch(⑦)) {
+?>
+
+    <li><?=(⑧) ?>
+      (<?=($row['price']) ?>円) </li>
+
+<?php
+    }
+  print '</ul>';
+  } ⑨(⑩ $e) {
+    print "エラーメッセージ:{$e -> getMessage()}";
+  }
+}
+?>
+
+
+【1.回答】
+(1) オブジェクト指向データベース
+(2) データベース抽象化レイヤ
+(3) ロールバック
+(4) SQLite
+(5) 結果セット
+
+
+【2.回答】
+(1) トランザクション処理を利用することで、データベースの更新処理を高速化できる
+(2) データベース抽象化レイヤを利用することで、データベースの個々の機能を十分に引き出すことができる
+(3) DDLに属するSQL命令にはSELECT、UPDATE、INSERTなどがある。
+(4) 条件式「title LIKE '%PHP'」は後方一致検索（titleフィールドが「PHP」で終わるかどうか）を表す。
+(5) 更新処理を行うにはqueryメソッドを、検索処理を行うにはexecメソッドを使用する。
+
+(1) × トランザクション処理は複数の処理が「全て成功」か「全て失敗」であることを保証するために利用するのでデータベースの更新処理を高速化する仕組みはない
+(2) × データベース抽象化レイヤは各種DBに共通化した命令ができる手段であり、データベースの個々の機能を十分に引き出す用途で利用できない。
+(3) × DDLはデータベースにおけるデータ構造を定義するSQL命令なので、CREATE,DROP,TRUNCATE等である。
+(4) ◯ 
+(5) × 更新処理のようなSQL文の実行で完結する場合はexecメソッドを、検索処理のような返ってきたデータを活用する場合はqueryメソッドを使用する。
+
+
+【3.回答】
+(1) UPDATE book SET price = price * 0.9;
+(2) DELETE FROM book WHERE price >= 2500 AND published < "2015-04-01";
+(3) SELECT title, price, publish, published FROM book ORDER BY price ASC, published DESC;
+(4) SELECT uid, unam FROM usr WHERE unam LIKE '山田%';
+(5) SELECT publish, AVG(price) AS price_avg FROM book GROUP BY publish;
+
+
+【4.回答】
+① prac3.php
+② WHERE title LIKE ?
+③ bindValue
+④ 1
+⑤ execute
+⑥ while
+⑦ PDO::FETCH_ASSOC
+⑧ $row['title']
+⑨ catch
+⑩ PDOException
