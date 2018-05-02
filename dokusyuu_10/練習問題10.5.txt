@@ -1,0 +1,44 @@
+練習問題 10.5
+1. 下記図はインターフェイスに関して表現したものです。①〜③の正しい語句を埋めて、図を完成させましょう。
+[インターフェイス(①キーワードで定義)]
+  ^
+  |
+  | ②キーワード
+  |
+  ③
+
+2. 配下に抽象メソッドoutputVoiceメソッドを持つ抽象クラスとサブクラスDog,Catが次のコードのようになっているとします。空欄①〜⑤を適切なキーワードで埋めて、スクリプトを完成させてください。
+<?php
+  ① class animal {
+    public ① function outputVoice(): string{
+  }
+
+  class Cat ② Animal {
+    public ③ function outputVoice(): string {
+      return '④';
+    }
+  }
+
+  class Dog ② Animal {
+    public ③ function outputVoice(): string {
+      return '⑤';
+  }
+
+  $cat = new Cat();
+  print $cat->outputVoice() . "</br>";
+  $dog = new Dog();
+  print $dog->outputVoice() . "</br>";
+?>
+
+
+【1.回答】
+①interface
+②implements
+③実装クラス
+
+【2.回答】
+①abstract
+②extends
+③final
+④ニャァ
+⑤バゥ
