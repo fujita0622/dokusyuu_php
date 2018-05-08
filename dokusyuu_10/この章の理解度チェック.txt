@@ -1,0 +1,127 @@
+ 10章 この章の理解度チェック
+1. 次の表は、オブジェクト指向の主要なキーワードをまとめたものです。空欄①〜⑪を埋めて、表を完成させてください。
+キーワード/概要
+①/メンバに対するアクセスの可否を定義するキーワードの総称。主要なキーワードにはpublic、②、③がある
+④/該当するメソッドがインスタンスを介さずに呼び出せることを示すキーワード。このようなメソッドを⑤といい、⑥演算子で呼び出せる
+⑦/該当するメソッドが必ずサブクラスによってオーバーライドしなければならないことを示すキーワード（このようなメソッドを⑧といい、⑧を含むクラスのことを⑨という）
+⑩/クラス内定数を宣言する場合に使用するキーワード
+⑪/クラスや関数の名前をグループ化するための仕組み
+
+
+2. 次の文章は、オブジェクト指向構文について説明したものです。正しいものには◯、謝っているものには×をつけてください。
+(1) protected修飾子のついたメソッドは、スーパークラスからのみ参照することが可能
+(2) クラス定数を呼び出す場合には「->」演算子を使用する
+(3) __callメソッドは未定義のメソッドが呼び出されたタイミングで実行される
+(4) 抽象クラスの機能を引き継ぐことを「実装」という
+(5) 完全修飾名の解決のされ方は、現在のコードが属する名前空間によって変動する。
+
+
+3. 次のコードにはいくつか誤りがあります。間違っている点を指摘してください。
+<?php
+class Figure { 
+  protected $width;
+  protected $height;
+  public function __destruct($width, $height) { 
+    $this -> width = $width;
+    $this -> height = $height;
+  }
+  protected abstract function getArea();
+}
+
+class Triangle implements Figure { 
+  public final function getArea() {
+    return $this -> width * $this -> height / 2;
+  }
+}
+
+class Square implements Figure { 
+  public final function getArea() {
+    return $this -> width * $this -> height;
+  }
+}
+
+$sri = new Triangle(10, 5);
+$sqr = new Square(10, 5);
+print "三角形は{$sri::getArea()}です"; 
+print "四角形は{$sri::getArea()}です"; 
+?>
+
+
+5. 次の表は、PHP独自のオブジェクト指向構文についてまとめたものです。空欄①〜⑬を埋めて、表を完成させてください。
+キーワード/概要
+①/未定義のクラスが呼び出された場合にされた関数。引数には②が渡される
+③/未定義のメソッドが呼び出された場合に実行されるメソッド。引数には④⑤が渡される
+⑥/未定義のプロパティが参照された場合に実行されるメソッド。引数には⑦が渡される
+⑧/未定義のメソッドが設定された場合に実行されるメソッド。引数⑨⑩が引き渡される
+⑪/オブジェクトの文字列表現を規定するメソッド
+⑫/オブジェクトが関数形式で呼び出された場合にコールされる
+⑬/オブジェクト情報のダンプ方法を規定するメソッド
+
+
+[1.回答]
+① アクセス修飾子
+② protected
+③ private
+④ static修飾子
+⑤ 静的メソッド
+⑥ ::
+⑦ abstract
+⑧ 抽象メソッド
+⑨ 抽象クラス
+⑩ const
+⑪ 名前空間
+
+
+[2.回答]
+(1) × サブクラスからも参照可能
+(2) × 「::」演算子で呼び出す
+(3) ◯ 
+(4) × 抽象クラスは「実装」と言わない。インターフェイスでは「実装」という
+(5) × 完全修飾子ではなく修飾子
+
+
+[3.回答]
+<?php
+class Figure { // 抽象メソッドを含むクラスなので先頭に abstract をつける
+  protected $width;
+  protected $height;
+  public function __destruct($width, $height) { // __destructではなく、プロパティを初期化するために__constructをつかう
+    $this -> width = $width;
+    $this -> height = $height;
+  }
+  protected abstract function getArea();
+}
+
+class Triangle implements Figure { // クラスの継承は implementsではなく extends
+  public final function getArea() {
+    return $this -> width * $this -> height / 2;
+  }
+}
+
+class Square implements Figure { // クラスの継承は implementsではなく extends
+  public final function getArea() {
+    return $this -> width * $this -> height;
+  }
+}
+
+$sri = new Triangle(10, 5);
+$sqr = new Square(10, 5);
+print "三角形は{$sri::getArea()}です"; // インスタンスメソッドは「::」演算子ではなく「->」演算子
+print "四角形は{$sri::getArea()}です"; // インスタンスメソッドは「::」演算子ではなく「->」演算子
+?>
+
+
+[5.回答]
+① オートローダ
+② クラスの完全修飾子
+③ __call
+④ メソッド名
+⑤ 引数
+⑥ __get
+⑦ プロパティ名
+⑧ __set
+⑨ プロパティ名
+⑩ プロパティ値
+⑪ __toString
+⑫ __invoke
+⑬ __debugInfo
