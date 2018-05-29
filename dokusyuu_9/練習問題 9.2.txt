@@ -17,7 +17,7 @@ pid/name/price/category
 3. 商品カテゴリが「食物」で価格が200円以上であるデータを、productsテーブルから取り出してみましょう。取得列は商品名と価格とします。
 
 【1.回答】
-CREATE TABLE products(pid INT PRIMARY KEY AUTO_INCREMENT, pname VARCHAR(255) NOT NULL, price INT, category VARCHER(255) DEFAULT '文房具');
+CREATE TABLE products(pid INT PRIMARY KEY AUTO_INCREMENT, pname VARCHAR(255) NOT NULL, price INT, category VARCHER(255) DEFAULT `文房具`);
 
 【2.回答】
 INSERT INTO products(name, price, category) VALUES

@@ -9,7 +9,7 @@
 
 2. 配下に抽象メソッドoutputVoiceメソッドを持つ抽象クラスとサブクラスDog,Catが次のコードのようになっているとします。空欄①〜⑤を適切なキーワードで埋めて、スクリプトを完成させてください。
 <?php
-  ① class animal {
+  ① class Animal {
     public ① function outputVoice(): string{
   }
 
